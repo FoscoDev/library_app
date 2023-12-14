@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .models import BookInstance, Book, Author
+from django.views import generic
 
 
 # Create your views here.
@@ -23,4 +24,18 @@ def index(request):
 
     return render(request, 'catalog/index.html', context=context)
 
+
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 10
+
+    # def get_context_data(self, **kwargs):
+    #     def get_context_data(self, **kwargs):
+    #         context = super(BookListView, self).get_context_data(**kwargs)
+    #
+    #         return context
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
 
